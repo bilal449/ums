@@ -7,27 +7,27 @@
 	    
 		  <p>
 		    <strong>Student Name & Number</strong>
-		    Louise Heneghan 2887569
+		    <%= @resume.student_name %> & <%= @resume.student_no %> 
 		  </p>
 
 		  <p>
 		    <strong>Programming Skills</strong>
-		    Java, Perfect developer, little bit of Python
+		    <%= @resume.programming_skills %>
 		  </p>
 
 		  <p>
 		    <strong>Contact information</strong>
-		    Phone Number: 0866633358, Email louheneghan@gmail.com@gmail.com
+		    <%= @resume.contact_information %>
 		  </p>
 
 		  <p>
 		    <strong>List of subjects:</strong>
-		    Formal Specifications, Web frameworks, Distributed Systems, Emerging Technologies
+		    <%= @resume.list_of_subjects %>
 		  </p>
 
 		  <p>
 		    <strong>Hobbies and interests</strong>
-		    Singing, movies, reading
+		    <%= @resume.hobbies_and_interests %>
 		  </p>
 
 	  	</table>

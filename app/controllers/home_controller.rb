@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   
   before_action :authenticate_user, only: [:index]
+  
   #before_create :create_activation_digest
 
   def sign_in
@@ -19,7 +20,7 @@ class HomeController < ApplicationController
       
       if @user.save
         UserMailer.account_activation(@user).deliver
-        format.html { redirect_to :controller => 'home', :action => 'index' }
+        format.html { redirect_to :controller => 'resume', :action => 'new' }
 
       else
         format.html { render :sign_up }
@@ -29,6 +30,13 @@ class HomeController < ApplicationController
   end
 
   def index
+    if session[:user_id]
+      @user = User.find(session[:user_id])
+      @resume = @user.resume
+      if @resume.nil?
+        redirect_to :controller=>'resume', :action=>'new'
+      end
+    end
   end
 
   #post sign_in method
@@ -47,7 +55,7 @@ class HomeController < ApplicationController
       session[:user_name] = @user.first_name + " " + @user.last_name
 
       flash[:notice] = "Signed in Successfully"
-      redirect_to :controller => 'home', :action => 'index'
+      redirect_to :controller => 'resume', :action => 'new'
       
     else
 
@@ -95,6 +103,8 @@ class HomeController < ApplicationController
     #   self.activation_token  = User.new_token
     #   self.activation_digest = User.digest(activation_token)
     # end
+
+    
 
     def remember
       self.remember_token = User.new_token

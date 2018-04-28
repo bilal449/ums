@@ -28,6 +28,8 @@
         <% if session[:user_id] %>
           
           <li><%= link_to 'Logout',"/home/destroy", method: :get, data: { confirm: 'Are you sure?' } %> </li>
+
+          <li><a href="/resume/new">Edit Resume</a></li>
           
           <li><strong><%= session[:user_name] %></strong></li>
           

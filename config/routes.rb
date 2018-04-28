@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
  
+  get 'resume/new'
+
   get 'password_resets/new'
 
   get 'password_resets/edit'
@@ -24,6 +26,9 @@ Rails.application.routes.draw do
   match "/log" => "admin#log_out", :via => :get
 
   match "/sign_in_post" => "home#sign_in_post", :via => :post
+
+
+  match "/create_resume" => "resume#create", :via => :post
 
   resources :account_activation, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
